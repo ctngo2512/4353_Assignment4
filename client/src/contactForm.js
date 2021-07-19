@@ -194,18 +194,7 @@ const ContactForm = (props) => {
                         onChange={handleInputChange}
                     />
                 </div>
-                
-                <div className="form-group input-group col-md-6">
-                    <div className="input-group-prepend">
-                        <div className="input-group-text">
-                        </div>
-                    </div>
-                    <input className="form-control" name="city" placeholder="City"
-                        value={values.city}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className="form-group input-group col-md-6">
+                                <div className="form-group input-group col-md-6">
                     <div className="input-group-prepend">
                         <div className="input-group-text">
                         </div>
@@ -213,6 +202,17 @@ const ContactForm = (props) => {
 
                     <input className="form-control" name="address2" placeholder="Address Line 2"
                         value={values.address2}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                
+                <div className="form-group input-group col-md-0">
+                <div className="input-group-prepend">
+                    <div className="input-group-text">
+                        </div>
+                    </div>
+                    <input className="form-control" name="city" placeholder="City"
+                        value={values.city}
                         onChange={handleInputChange}
                     />
                 </div>
