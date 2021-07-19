@@ -16,6 +16,7 @@ const Hero = (props) => {
     var [contactObjects, setContactObjects] = useState({});
     var [fuelObjects, setFuelObjects] = useState({});
     var userAddress = '';
+    var isClient = false;
 
     //variables to switch between profile page and fuel page
     const [count, setCount] = useState(false);
@@ -37,8 +38,12 @@ const Hero = (props) => {
     useEffect(() => {
         fire.database().ref('Users/'+userID+'/Transactions').on('value', snapshot => {
             
-            if (snapshot.val() != null) {
-                
+            if(!snapshot.exists){
+                return;
+            }
+            
+            else if (snapshot.val() != null) {
+                isClient=true;
                 setFuelObjects({
                     ...snapshot.val()
                 });
@@ -51,10 +56,11 @@ const Hero = (props) => {
     const nameRef = queryRef.orderByKey();
 
     //get address from database
-    nameRef.on('value', function(snapshot){
-        userAddress = Object.values(snapshot.val())[0];
-    })
-
+    if(isClient){
+        nameRef.on('value', function(snapshot){
+            userAddress = Object.values(snapshot.val())[0];
+        })
+    }
    // alert(userAddress);
 
    // alert(nameRef);
