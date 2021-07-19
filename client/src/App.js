@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import fire from './fire';
 import Login from './Login';
 import Hero from './Hero';
-import ContactForm from './contactForm';
-import FuelForm from './fuel';
 import './App.css';
 
 const App = () => {

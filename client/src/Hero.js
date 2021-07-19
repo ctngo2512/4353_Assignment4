@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect} from 'react';
 import fire from "./fire";
 import ContactForm from "./contactForm";
 import FuelForm from './fuel';
@@ -55,13 +55,9 @@ const Hero = (props) => {
         userAddress = Object.values(snapshot.val())[0];
     })
 
-   
    // alert(userAddress);
 
    // alert(nameRef);
-
-    const {test} = contactObjects;
-
 
     //pushes profile contact info to the firebase database
     const addOrEdit = (...obj) => {

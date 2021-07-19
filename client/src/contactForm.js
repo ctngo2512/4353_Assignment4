@@ -4,8 +4,6 @@ import fire from './fire';
 //contact form takes user inputs for name, address....
 const ContactForm = (props) => {
 
-    const {currentId, contactObjects, addOrEdit}  = props;
-
     const initialFieldValues = {
         name: '',
         address: '',
@@ -150,8 +148,6 @@ const ContactForm = (props) => {
                 alert("Incorrect zip-code format");
             }
         }
-
-
         //alert(values.delivery_date);
 
        //this.setState({errors: errors});

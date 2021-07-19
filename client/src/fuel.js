@@ -32,7 +32,7 @@ const FuelForm = (props) => {
         }
         
             
-    }, [props.currentId, props.fuelObjects])
+    }, [props.currentId, props.fuelObjects, props.initialFieldValues])
 
 
     //alert(initialFieldValues.gallon_requested);
