@@ -32,12 +32,8 @@ describe('Contact Form component tests', ()=> {
         }));
     
         act(() => {
-            render(<Hero/>);
+            render(<ContactForm/>);
         });
-    
-        const wrapper = shallow(<ContactForm/>);
-        
-    
     });
 
     it ('calls onSubmit prop function when form is submitted', () => {
@@ -45,6 +41,5 @@ describe('Contact Form component tests', ()=> {
         const form = wrapper.find('form');
         form.simulate('submit');
     })
-
 
 });

@@ -38,9 +38,5 @@ describe('Fuel page component tests', ()=> {
         act(() => {
             render(<FuelForm/>);
         });
-    
-        const wrapper = shallow(<ContactForm/>);
-        
-    
     });
 });
