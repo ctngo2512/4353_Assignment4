@@ -5,7 +5,6 @@ import validator from 'validator';
 
 //form for company fuel inputs
 const FuelForm = (props) => {
-
     //alert(props.userAddress);
     
     const initialFieldValues = {
@@ -20,18 +19,15 @@ const FuelForm = (props) => {
     const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
-        if (props.currentId == '')
-            setValues({ ...initialFieldValues })
-        else{
-            setValues({
-                ...props.fuelObjects[props.currentId]
-            });
-
-           
-            
-        }
-        
-            
+        try {
+            if (props.currentId == '')
+                setValues({ ...initialFieldValues })
+            else{
+                setValues({
+                    ...props.fuelObjects[props.currentId]
+                });
+            }
+        } catch(error) {}
     }, [props.currentId, props.fuelObjects, props.initialFieldValues])
 
 
@@ -82,7 +78,6 @@ const FuelForm = (props) => {
             errors["gallon_requested"] = "Only numbers";
             alert("Numbers only in gallons requested field");
          }  
-            
         }
    
        //this.setState({errors: errors});

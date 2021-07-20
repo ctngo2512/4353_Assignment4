@@ -17,12 +17,14 @@ const ContactForm = (props) => {
 
     //if no input yet set to empty, else set values to user inputs
     useEffect(() => {
-        if (props.currentId == '')
-            setValues({ ...initialFieldValues })
-        else
-            setValues({
-                ...props.contactObjects[props.currentId]
-            })
+        try {
+            if (props.currentId == '')
+                setValues({ ...initialFieldValues })
+            else
+                setValues({
+                    ...props.contactObjects[props.currentId]
+                })
+        } catch(error) {}
     }, [props.currentId, props.contactObjects])
 
     //save user inputs to values to save to firebase
