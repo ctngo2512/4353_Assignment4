@@ -67,7 +67,6 @@ const Hero = (props) => {
 
     //pushes profile contact info to the firebase database
     const addOrEdit = (...obj) => {
-    
         fire.database().ref('Users/'+userID+'/Info').update(
             ...obj,
             err => {
@@ -81,7 +80,6 @@ const Hero = (props) => {
 
     //addOrEdit for the gasForm
     const gasFormEdit = (...obj) => {
-    
         fire.database().ref('Users/'+userID+'/Transactions').push(
             ...obj,
             err => {
@@ -96,10 +94,8 @@ const Hero = (props) => {
     return (
         <div className="hero">
             {count ? (
-               
                 //runs fuel page
             <div className="container"> 
-                
                 <nav>
                     <h2>Welcome</h2>
                   
@@ -112,7 +108,6 @@ const Hero = (props) => {
                         <h1 className="display-4 text-center">Fuel Page</h1>
                     </div>
                 </div>
-                
                     <div className="row">
                     <div className="col-md-5">
                     <FuelForm {...({ currentId, fuelObjects, gasFormEdit, userAddress})}/>
@@ -145,7 +140,6 @@ const Hero = (props) => {
                     </div>
                     </div>
                 </div>
-        
                 ) : (
                     //runs profile page
             <section className="hero">

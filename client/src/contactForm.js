@@ -36,6 +36,7 @@ const ContactForm = (props) => {
         })
     }
 
+    //input validations for profile page
     const handleValidation = values => {
        
         //let fields caused an issue with refreshing and not inputting data
@@ -78,7 +79,6 @@ const ContactForm = (props) => {
             }        
         }
 
-
          //---Address 2---
          if(values.address2 != null && values.address2!=''){
             if(!values.address2.match(/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/)){
@@ -117,7 +117,6 @@ const ContactForm = (props) => {
             alert("State cannot be empty");
         }
 
-   
         else if(!values.state.match(/^[a-zA-Z\s]*$/)){
             formIsValid=false;
             alert("Invalid selection");
@@ -166,8 +165,8 @@ const ContactForm = (props) => {
     }
     }
     //alert(values["name"]);
-
     //alert(props.contactObjects[0]["name"]);
+    
     return (
         <form autoComplete="off" onSubmit={handleFormSubmit}>
             <section className = "contact">

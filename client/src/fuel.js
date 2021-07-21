@@ -55,6 +55,7 @@ const FuelForm = (props) => {
         }
       }
 
+    //validation for fuel form 
     const handleValidation = values => {
        
         //let fields caused an issue with refreshing and not inputting data
@@ -82,20 +83,16 @@ const FuelForm = (props) => {
    
        //this.setState({errors: errors});
        return (formIsValid);
-   }
+    }
     
-
     const handleFormSubmit = e => {
         if (e)
             e.preventDefault()
         if(handleValidation(values)){
          props.gasFormEdit(values);
         }
-        
     }
 
-    //validation for fuel form 
-    
     return (
         <form autoComplete="off" onSubmit={handleFormSubmit}>
             <section className = "contact">
