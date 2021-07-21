@@ -1,11 +1,12 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
-import ContactForm from './contactForm';
-import {handleFormSubmit} from './contactForm';
-import {handleValidation} from './contactForm';
-import { act, render } from '@testing-library/react';
 import fire from './fire';
 import Hero from './Hero';
+import ContactForm from './contactForm';
+import {shallow, mount} from 'enzyme';
+import {handleFormSubmit} from './contactForm';
+import {handleValidation} from './contactForm';
+import {act, render} from '@testing-library/react';
+
 
 window.alert = jest.fn();
 
@@ -15,6 +16,12 @@ describe('Contact Form component tests', ()=> {
     it("renders without crashing", () => {
         shallow(<ContactForm />);
     });
+
+    it ('calls onSubmit prop function when form is submitted', () => {
+        const wrapper = shallow(<ContactForm onSubmit={handleFormSubmit}/>);
+        const form = wrapper.find('form');
+        form.simulate('submit');
+    })
 
     it('Renders user data', () => {
         let fakeUser = {
@@ -35,11 +42,5 @@ describe('Contact Form component tests', ()=> {
             render(<ContactForm/>);
         });
     });
-
-    it ('calls onSubmit prop function when form is submitted', () => {
-        const wrapper = shallow(<ContactForm onSubmit={handleFormSubmit}/>);
-        const form = wrapper.find('form');
-        form.simulate('submit');
-    })
 
 });

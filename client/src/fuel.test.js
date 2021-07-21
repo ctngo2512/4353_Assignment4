@@ -1,9 +1,9 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
 import FuelForm from './fuel';
-import {handleFormSubmit} from './fuel';
 import fire from './fire';
-import { act, render } from '@testing-library/react';
+import {shallow, mount} from 'enzyme';
+import {handleFormSubmit} from './fuel';
+import {act, render} from '@testing-library/react';
 
 window.alert = jest.fn();
 
