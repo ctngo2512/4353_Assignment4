@@ -51,19 +51,19 @@ const Hero = (props) => {
         })
     }, [props.userID])
 
-    const queryRef = fire.database().ref('Users/'+userID+'/Info/');
+    useEffect(() => {
+        const queryRef = fire.database().ref('Users/'+userID+'/Info/');
+        const nameRef = queryRef.orderByKey();
 
-    const nameRef = queryRef.orderByKey();
-
-    //get address from database
-    if(isClient){
-        nameRef.on('value', function(snapshot){
-            userAddress = Object.values(snapshot.val())[0];
-        })
-    }
-   // alert(userAddress);
-
-   // alert(nameRef);
+        //get address from database
+        if(isClient){
+            nameRef.on('value', function(snapshot){
+                userAddress = Object.values(snapshot.val())[0];
+            })
+        }
+       // alert(userAddress);
+       // alert(nameRef);
+    })
 
     //pushes profile contact info to the firebase database
     const addOrEdit = (...obj) => {
