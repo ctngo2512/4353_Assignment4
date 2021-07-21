@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react';
 import App from './App';
 import Hero from './Hero';
-import {handleLogout} from './App';
-import {authListener} from './App';
+import fire from './fire';
 import {configure, shallow, mount} from 'enzyme';
 import {act, render} from '@testing-library/react';
-import fire from './fire';
 
 describe('App component tests', ()=> {
+    let handleLogout;
+    let user;
+    let email;
+    let password;
+    let clearInputs;
+    let setEmail;
       
     it("renders without crashing", () => {
         shallow(<App />);
@@ -20,4 +24,5 @@ describe('App component tests', ()=> {
         expect(wrapper2).toMatchSnapshot();
     });
 
+    
 });

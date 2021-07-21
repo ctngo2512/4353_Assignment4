@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import fire from "./fire";
 import {shallow, mount} from 'enzyme';
 import Hero from './Hero';
-import {handleLogout} from './Hero';
-import {goBack} from './Hero';
 
 describe('Profile component tests', ()=> {
+    let handleLogout;
+    let goBack;
     
     const wrapper = shallow(<Hero />);
 

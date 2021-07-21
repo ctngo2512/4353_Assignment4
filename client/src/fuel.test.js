@@ -1,8 +1,8 @@
 import React from 'react';
 import FuelForm from './fuel';
 import fire from './fire';
+import Hero from './Hero';
 import {shallow, mount} from 'enzyme';
-import {handleFormSubmit} from './fuel';
 import {act, render} from '@testing-library/react';
 
 window.alert = jest.fn();
@@ -10,8 +10,10 @@ window.alert = jest.fn();
 describe('Fuel page component tests', ()=> {
     window.alert.mockClear();
 
+    let handleFormSubmit;
+
     it("renders without crashing", () => {
-        shallow(<FuelForm />);
+        shallow(<Hero />);
     });
 
     it ('calls onSubmit prop function when form is submitted', () => {
