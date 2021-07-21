@@ -17,9 +17,10 @@ describe('Fuel page component tests', ()=> {
     });
 
     it ('calls onSubmit prop function when form is submitted', () => {
-        const wrapper = shallow(<FuelForm onSubmit={handleFormSubmit}/>);
-        const form = wrapper.find('form');
-        form.simulate('submit');
+        const wrapper = shallow(<FuelForm/>);
+        wrapper.find('form').simulate('submit', {
+            preventDefault: () => {}
+          });
     })
 
     it('Renders user data', () => {

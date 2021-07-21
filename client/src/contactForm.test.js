@@ -20,9 +20,11 @@ describe('Contact Form component tests', ()=> {
     });
 
     it ('calls onSubmit prop function when form is submitted', () => {
-        const wrapper = shallow(<ContactForm onSubmit={handleFormSubmit}/>);
-        const form = wrapper.find('form');
-        form.simulate('submit');
+        const wrapper = shallow(<ContactForm/>);
+        expect(wrapper).toMatchSnapshot();
+        wrapper.find('form').simulate('submit', {
+            preventDefault: () => {}
+          });
     })
 
     it('Renders user data', () => {
