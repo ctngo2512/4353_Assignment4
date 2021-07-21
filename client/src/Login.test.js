@@ -11,7 +11,7 @@ describe('Login component tests', ()=> {
     let setEmail;
     let hasAccount;
 
-    const wrapper = shallow(<Login />);
+    const wrapper = shallow(<Login hasAccount={!hasAccount}/>);
 
     it("renders without crashing", () => {
         shallow(<Login />);
@@ -28,12 +28,12 @@ describe('Login component tests', ()=> {
         .toEqual(undefined);
 
         //Button should have matching text
-        expect(wrapper.find('Button').text()).toEqual('Sign Up');
+        expect(wrapper.find('Button').text()).toEqual('Sign In');
         
         //Testing if the Sign In Button appears when a user has an account
         const wrapper2 = shallow(<Login hasAccount = {hasAccount}/>);
 
-        expect(wrapper2.find('Button').text()).toEqual('Sign In');
+        expect(wrapper2.find('Button').text()).toEqual('Sign Up');
 
     });
         
