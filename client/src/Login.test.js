@@ -1,9 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import Enzyme from 'enzyme';
 import Login from './Login';
-import { act, render } from '@testing-library/react';
-
 
 describe('Login component tests', ()=> {
     let setHasAccount;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import fire from './fire';
 import validator from 'validator';
 
-
 //form for company fuel inputs
 const FuelForm = (props) => {
 
@@ -35,18 +34,19 @@ const FuelForm = (props) => {
         } catch(error) {}
     }, [props.currentId, props.fuelObjects, props.initialFieldValues])
 
-
     //alert(initialFieldValues.gallon_requested);
 
     //alert(props.userAddress);
     
     const addyRef = fire.database().ref('Users/'+userID);
-    addyRef.on('value', function(snapshot){
-        if(snapshot.hasChild('Info')){
-            userAddy = (Object.values(snapshot.child('Info').val())[0]);
-        }
-    })
-
+    try {
+        addyRef.on('value', function(snapshot){
+            if(snapshot.hasChild('Info')){
+                userAddy = (Object.values(snapshot.child('Info').val())[0]);
+            }
+        })
+    } catch {}
+    
    // alert("USERADDY: "+userAddy);
 
     const handleInputChange = e => {

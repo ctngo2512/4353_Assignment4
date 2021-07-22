@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import App from './App';
 import Hero from './Hero';
-import fire from './fire';
 import {configure, shallow, mount} from 'enzyme';
-import {act, render} from '@testing-library/react';
 
 describe('App component tests', ()=> {
     let handleLogout;

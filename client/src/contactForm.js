@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import fire from './fire';
 
 //contact form takes user inputs for name, address....
 const ContactForm = (props) => {
@@ -13,7 +12,6 @@ const ContactForm = (props) => {
         address2: ''
     }
 
-    
     var [values, setValues] = useState(initialFieldValues);
 
     //if no input yet set to empty, else set values to user inputs
