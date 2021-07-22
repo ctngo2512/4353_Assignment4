@@ -72,6 +72,14 @@ const FuelForm = (props) => {
         let formIsValid = true;
 
         //date
+        if (validator.isDate(values.delivery_date)) {
+            setErrorMessage('Valid Date :)')
+        } else {
+            setErrorMessage('Enter Valid Date in form of 00/00/0000')
+            formIsValid = false;
+            errors["delivery_date"] = "has to be in form of 00/00/0000";
+            alert("Delivery date has to be in form of 00/00/0000");
+        }
 
         //alert(values.delivery_date);
 
