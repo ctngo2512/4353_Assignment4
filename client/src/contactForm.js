@@ -142,11 +142,6 @@ const ContactForm = (props) => {
                 formIsValid=false;
                 alert("Zip code too short");
             }
-            
-            else if (!values.zipcode.match(/^[0-9]{5}(-[0-9]{3})?$/) || !values.zipcode.match(/^(?:\d{5})?$/)){
-                formIsValid=false;
-                alert("Incorrect zip-code format");
-            }
         }
         //alert(values.delivery_date);
 
