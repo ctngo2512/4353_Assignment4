@@ -5,9 +5,7 @@ import validator from 'validator';
 
 //form for company fuel inputs
 const FuelForm = (props) => {
-   
-   
-    
+
     const initialFieldValues = {
         gallon_requested: '',
         delivery_address: '',
@@ -25,7 +23,6 @@ const FuelForm = (props) => {
     var [values, setValues] = useState(initialFieldValues)
     const [errorMessage, setErrorMessage] = useState('')
     
-
     useEffect(() => {
         try {
             if (props.currentId == '')
@@ -65,14 +62,6 @@ const FuelForm = (props) => {
         })
 
     }
-    const validateDate = (value) => {
-              
-        if (validator.isDate(values.delivery_date)) {
-          setErrorMessage('Valid Date :)')
-        } else {
-          setErrorMessage('Enter Valid Date in form of 00/00/0000')
-        }
-      }
 
     //validation for fuel form 
     const handleValidation = values => {
