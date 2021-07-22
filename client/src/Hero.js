@@ -16,7 +16,7 @@ const Hero = (props) => {
     var [contactObjects, setContactObjects] = useState({});
     var [fuelObjects, setFuelObjects] = useState({});
     var userAddress = '';
-    var isClient = false;
+    const [isClient, setIsClient] = useState('');
 
     //variables to switch between profile page and fuel page
     const [count, setCount] = useState(false);
@@ -24,7 +24,7 @@ const Hero = (props) => {
     //Once components load complete
     useEffect(() => {
         fire.database().ref('Users/'+userID).on('value', snapshot => {
-            
+          //  setIsClient(false);
             if (snapshot.val() != null) {
                 
                 setContactObjects({
@@ -43,7 +43,8 @@ const Hero = (props) => {
             }
             
             else if (snapshot.val() != null) {
-                isClient=true;
+                setIsClient(true);
+
                 setFuelObjects({
                     ...snapshot.val()
                 });
@@ -52,16 +53,20 @@ const Hero = (props) => {
     }, [props.userID])
 
     useEffect(() => {
-        const queryRef = fire.database().ref('Users/'+userID+'/Info/');
+        const queryRef = fire.database().ref('Users/'+userID);
         const nameRef = queryRef.orderByKey();
 
         //get address from database
+    
         if(isClient){
             nameRef.on('value', function(snapshot){
-                userAddress = Object.values(snapshot.val())[0];
+                userAddress = (Object.values(snapshot.child('Info').val())[0]);
             })
+       
         }
-       // alert(userAddress);
+       // alert(isClient)
+     //  alert(userAddress);
+      //  alert("TEST: " + test123);
        // alert(nameRef);
     })
 
@@ -91,6 +96,7 @@ const Hero = (props) => {
         );
     }
   
+    //alert("GALLON REQUESTED:" + fuelObjects.gallon_requested);
     return (
         <div className="hero">
             {count ? (
@@ -110,7 +116,7 @@ const Hero = (props) => {
                 </div>
                     <div className="row">
                     <div className="col-md-5">
-                    <FuelForm {...({ currentId, fuelObjects, gasFormEdit, userAddress})}/>
+                    <FuelForm {...{ currentId, fuelObjects, gasFormEdit, userID}}/>
                     </div>
                     <div className="col-md-7">
                         <table className="table table-borderless table-stripped">
