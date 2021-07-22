@@ -12,6 +12,7 @@ const ContactForm = (props) => {
         zipcode: '',
         address2: ''
     }
+
     
     var [values, setValues] = useState(initialFieldValues);
 

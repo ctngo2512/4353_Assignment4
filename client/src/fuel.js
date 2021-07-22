@@ -5,7 +5,8 @@ import validator from 'validator';
 
 //form for company fuel inputs
 const FuelForm = (props) => {
-    //alert(props.userAddress);
+   
+   
     
     const initialFieldValues = {
         gallon_requested: '',
@@ -14,9 +15,16 @@ const FuelForm = (props) => {
         suggested_price: '',
         total_due: ''
     }
+//const [userAddy, setAddress] = useState('');
+
+    var userAddy;
+    const {
+        userID
+    } = props;
 
     var [values, setValues] = useState(initialFieldValues)
     const [errorMessage, setErrorMessage] = useState('')
+    
 
     useEffect(() => {
         try {
@@ -33,6 +41,17 @@ const FuelForm = (props) => {
 
     //alert(initialFieldValues.gallon_requested);
 
+    //alert(props.userAddress);
+    
+    const addyRef = fire.database().ref('Users/'+userID);
+    addyRef.on('value', function(snapshot){
+        if(snapshot.hasChild('Info')){
+            userAddy = (Object.values(snapshot.child('Info').val())[0]);
+        }
+    })
+
+   // alert("USERADDY: "+userAddy);
+
     const handleInputChange = e => {
         var { name, value} = e.target;
         
@@ -42,7 +61,7 @@ const FuelForm = (props) => {
             //pseudo suggested price calculator
             suggested_price: (parseInt(values.gallon_requested))*1.50,
             total_due: (((parseInt(values.gallon_requested))*1.50)*1.10).toFixed(2),
-            delivery_address: props.userAddress
+            delivery_address:  userAddy
         })
 
     }
