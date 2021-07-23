@@ -6,11 +6,26 @@ const ContactForm = (props) => {
     const initialFieldValues = {
         name: '',
         address: '',
+        address2: '',
         city: '',
         state: '',
-        zipcode: '',
-        address2: ''
+        zipcode: ''
     }
+    const [nameError, setNameError] = useState('');
+    const [addressError, setAddressError] = useState('');
+    const [cityError, setCityError] = useState('');
+    const [stateError, setStateError] = useState('');
+    const [zipcodeError, setZipcodeError] = useState('');
+    const [address2Error, setAddress2Error] = useState('');
+
+    const clearErrors = () => {
+        setNameError('');
+        setAddressError('');
+        setCityError('');
+        setStateError('');
+        setZipcodeError('');
+        setAddress2Error('');
+      }
 
     var [values, setValues] = useState(initialFieldValues);
 
@@ -47,16 +62,17 @@ const ContactForm = (props) => {
         if(values.name =='' || values.name==null){
             formIsValid = false;
             errors["name"] = "Cannot be empty";
-            alert("Name cannot be empty");
+            setNameError("Name cannot be empty.");
          }else{
  
          if(!values.name.match(/^[a-zA-Z\s]*$/)){
              formIsValid = false;
              errors["name"] = "Only letters";
-             alert("Letters only in name field");
+             setNameError("Name can only contain letters.");
           }
          else if (values.name.length > 50) {
-            errors.name = 'The name provided is too long - max 50 characters please'
+            errors['name'] = 'Is too long';
+            setNameError("Name has to be shorter than 50 characters.");
             }        
         }  
 
@@ -64,88 +80,95 @@ const ContactForm = (props) => {
          if(values.address =='' || values.address==null){
             formIsValid = false;
             errors["address"] = "Cannot be empty";
-            alert("address cannot be empty");
+            setAddressError("Address Line 1 cannot be empty.");
          }else{
  
          if(!values.address.match(/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/)){
              formIsValid = false;
-             errors["address"] = "Only letters";
-             alert("Letters and numbers only in address field");
+             errors["address"] = "Only letters and numbers";
+             setAddressError("Address Line 1 can only contain letters and numbers.");
           }
          else if (values.address.length > 100) {
             formIsValid = false;
-            errors.name = 'The address provided is too long - max 100 characters please'
+            errors["address"] = 'Is too long';
+            setAddressError("Address Line 1 has to be shorter than 100 characters.");
             }        
         }
 
          //---Address 2---
-         if(values.address2 != null && values.address2!=''){
-            if(!values.address2.match(/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/)){
-             formIsValid = false;
-             errors["address2"] = "Only letters";
-             alert("Letters and number only in address2 field");
-          }
-         else if (values.address2.length > 100) {
+         if(values.address2 =='' || values.address2==null){
             formIsValid = false;
-            errors.name = 'The address provided is too long - max 100 characters please'
-            alert("Address2 is too long");
-            }        
-        }
+            errors["address2"] = "Cannot be empty";
+            setAddress2Error("Address Line 2 cannot be empty.");
+         }else{
+            if(values.address2 != null && values.address2!=''){
+                if(!values.address2.match(/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/)){
+                 formIsValid = false;
+                 errors["address2"] = "Only letters";
+                setAddress2Error("Address Line 2 can only contain letters and numbers.");
+              }
+             else if (values.address2.length > 100) {
+                formIsValid = false;
+                errors["address2"] = 'Is too long';
+                setAddress2Error("Address Line 2 has to be shorter than 100 characters.");
+                }        
+            }
+         }
 
          //----City----
          if(values.city =='' || values.city==null){
             formIsValid = false;
             errors["city"] = "Cannot be empty";
-            alert("city cannot be empty");
+            setCityError("City cannot be empty.");
          }else{
  
          if(!values.city.match(/^[a-zA-Z]+$/)){
              formIsValid = false;
              errors["city"] = "Only letters";
-             alert("Letters only in city field");
+             setCityError("City can only contain letters.");
           }
          else if (values.name.length > 100) {
             formIsValid = false;
-            errors.name = 'The city provided is too long - max 50 characters please'
+            errors["city"] = 'Is too long';
+            setCityError("City has to be shorter than 100 characters.");
             }        
         }
 
         //----State----
         if(values.state =='' || values.state==null){
             formIsValid=false;
-            alert("State cannot be empty");
+            errors["state"] = "Cannot be empty";
+            setStateError("State cannot be empty.");
         }
 
         else if(!values.state.match(/^[a-zA-Z\s]*$/)){
             formIsValid=false;
-            alert("Invalid selection");
+            errors["state"] = "Only letters";
+            setStateError("State can only contain letters.");
         }
 
          //----Zipcode---
-         if(values.zipcode =='' || values.zipcode==null){
+        if(values.zipcode =='' || values.zipcode==null){
             formIsValid = false;
             errors["zipcode"] = "Cannot be empty";
-            alert("zipcode cannot be empty");
+            setZipcodeError("Zipcode cannot be empty.");
          }else{
- 
-         if(!values.zipcode.match(/^[0-9]([0-9]|-(?!-))+$/)){
+        if(!values.zipcode.match(/^[0-9]([0-9]|-(?!-))+$/)){
              formIsValid = false;
              errors["zipcode"] = "Only numbers";
-             alert("Numbers only in name field");
+             setZipcodeError("Zipcode can only contain numbers.");
           }
-            else if (values.zipcode.length > 9) {
-                errors.zipcode = 'The name provided is too long - max 50 characters please'
-                formIsValid=false;
-                alert("Zip code too long");
-            }  
-            else if(values.zipcode.length < 5){
-                formIsValid=false;
-                alert("Zip code too short");
-            }
+        else if (values.zipcode.length > 9) {
+            errors["zipcode"] = 'Is too long';
+            formIsValid=false;
+            setZipcodeError("Zipcode has to be shorter than 9 digits.");
+        }  
+        else if(values.zipcode.length < 5){
+            errors["zipcode"] = "Is too short";
+            formIsValid=false;
+            setZipcodeError("Zipcode has to be at least 5 digits.");
         }
-        //alert(values.delivery_date);
-
-       //this.setState({errors: errors});
+    }
        return (formIsValid);
    }
 
@@ -164,19 +187,24 @@ const ContactForm = (props) => {
     return (
         <form autoComplete="off" onSubmit={handleFormSubmit}>
             <section className = "contact">
+            <div className="contactContainer">
+            <div className="form-group input-group">
             <div className="form-group input-group">
                 <div className="input-group-prepend">
+
                     <div className="input-group-text">
                         <i className="fas fa-user"></i>
                     </div>
                 </div>
                 <div className = 'Name'>
-                <input className="form-control" name="name" placeholder="Full Name"
+                <input className="form-control" name="name" onClick={clearErrors} placeholder="Full Name"
                     value={values.name}
                     onChange={handleInputChange}
                 />
                 </div>
+                </div>
             </div>
+            <p className="errorMsg">{nameError}</p>
             <div className="form-row">
                 <div className="form-group input-group col-md-6">
                     <div className="input-group-prepend">
@@ -184,10 +212,11 @@ const ContactForm = (props) => {
                         </div>
                     </div>
 
-                    <input className="form-control" name="address" placeholder="Address Line 1"
+                    <input className="form-control" name="address" onClick={clearErrors} placeholder="Address Line 1"
                         value={values.address}
                         onChange={handleInputChange}
                     />
+                    <p className="errorMsg">{addressError}</p>
                 </div>
                                 <div className="form-group input-group col-md-6">
                     <div className="input-group-prepend">
@@ -195,10 +224,11 @@ const ContactForm = (props) => {
                         </div>
                     </div>
 
-                    <input className="form-control" name="address2" placeholder="Address Line 2"
+                    <input className="form-control" name="address2" onClick={clearErrors} placeholder="Address Line 2"
                         value={values.address2}
                         onChange={handleInputChange}
                     />
+                    <p className="errorMsg">{address2Error}</p>
                 </div>
                 
                 <div className="form-group input-group col-md-0">
@@ -206,22 +236,23 @@ const ContactForm = (props) => {
                     <div className="input-group-text">
                         </div>
                     </div>
-                    <input className="form-control" name="city" placeholder="City"
+                    <input className="form-control" name="city" onClick={clearErrors} placeholder="City"
                         value={values.city}
                         onChange={handleInputChange}
                     />
                 </div>
             </div>
+            <p className="errorMsg">{cityError}</p>
             <div className="form-group input-group col-md-0">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
                     </div>
                 </div>
-                <select className="form-control" name="state" 
+                <select className="form-control" name="state" onClick={clearErrors}
                     value={values.state}
                     //pull down option for state
                     onChange={handleInputChange}>
-                        <option value="DEFAULT" disabled>Select your state</option>
+                        <option value="DEFAULT">Select your state</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
@@ -273,17 +304,20 @@ const ContactForm = (props) => {
                         <option value="WV">West Virginia</option>
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
-                </select>			
+                </select>		
             </div>
+            <p className="errorMsg">{stateError}</p>	
             <div className="form-group input-group col-md-0">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
                     </div>
                 </div>
-                <input className="form-control" name="zipcode" placeholder="Zipcode"
+                <input className="form-control" name="zipcode" onClick={clearErrors} placeholder="Zipcode"
                     value={values.zipcode}
                     onChange={handleInputChange}
                 />
+            </div>
+            <p className="errorMsg">{zipcodeError}</p>	
             </div>
             <div className="form-group">
                 <div className="savebtn">

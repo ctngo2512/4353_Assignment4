@@ -4,16 +4,13 @@ import Hero from './Hero';
 import ContactForm from './contactForm';
 import {shallow, mount} from 'enzyme';
 import {act, render} from '@testing-library/react';
-
+import handleValidation from './contactForm';
 
 window.alert = jest.fn();
 
 describe('Contact Form component tests', ()=> {
 
     window.alert.mockClear();
-
-    let handleValidation;
-    let handleFormSubmit;
 
     it("renders without crashing", () => {
         shallow(<Hero />);
@@ -28,7 +25,7 @@ describe('Contact Form component tests', ()=> {
     })
 
     it('Renders user data', () => {
-        let fakeUser = {
+        const fakeUser = {
             name: '',
             address: '',
             city: '',
@@ -45,6 +42,19 @@ describe('Contact Form component tests', ()=> {
         act(() => {
             render(<ContactForm/>);
         });
+    });
+
+    it('handles validations', () => {
+        const fakeUser = {
+            name: '1',
+            address: '1',
+            city: '1',
+            state: '1',
+            zipcode: '1'
+        }
+
+        expect(handleValidation(fakeUser)).toBeTruthy();
+
     });
 
 });

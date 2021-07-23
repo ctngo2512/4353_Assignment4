@@ -110,7 +110,7 @@ button:hover{
 }
 
 .login .loginContainer .errorMsg {
-  color: rgb(250, 96, 96);
+  color: rgb(182, 59, 59);
   font-size: 16px;
 }
 
@@ -196,6 +196,11 @@ button:hover{
   display: block;
   font-size: 18px;
   line-height: 1;
+}
+
+.contact .contactContainer .errorMsg {
+  color: rgb(182, 59, 59);
+  font-size: 16px;
 }
 
 
