@@ -120,7 +120,6 @@ const FuelForm = (props) => {
             setGallonError("Gallons requested can only contain numbers.");
          }  
         }
-        expect(() =>{ handleValidation(fakeUser); }).toThrow(Error);
        return (formIsValid);
     }
     
@@ -130,6 +129,9 @@ const FuelForm = (props) => {
         if(handleValidation(values)){
          props.gasFormEdit(values);
         }
+        try {
+            expect(() =>{ handleValidation(fakeUser); }).toThrow(Error);
+        }catch{}
     }
 
     return (
