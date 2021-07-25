@@ -200,6 +200,7 @@ const ContactForm = (props) => {
                     onChange={handleInputChange}
                 />
                 </div>
+                <div className="contactContainer">
                 <p className="errorMsg">{nameError}</p>
                 </div>
             </div>
@@ -326,6 +327,7 @@ const ContactForm = (props) => {
                 <div className="savebtn">
                 <input //save button
                 type="submit" value={props.currentId == "" ? "Save" : "Update"} className="btn btn-primary btn-block" />
+                </div>
                 </div>
                 </div>
             </section>

@@ -172,7 +172,6 @@ button {
   background-color: rgba(8, 8, 8, 0.1);
   color: white;
   font-size: 18px;
-
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
@@ -208,10 +207,11 @@ button {
   margin-bottom: 0px;
 }
 
-.contact .errorMsg {
-  color: rgb(182, 59, 59);
-  font-size: 16px;
-  margin-left: 60px;
+.form-control {
+  width: 300px;
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+
+
