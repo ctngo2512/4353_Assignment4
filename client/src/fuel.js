@@ -14,8 +14,15 @@ const FuelForm = (props) => {
     }
     const fakeUser = {
         gallon_requested: '*',
-        delivery_address: '*',
-        delivery_date: '',
+        delivery_address: '',
+        delivery_date: '*',
+        suggested_price: '',
+        total_due: ''
+    }
+    const fakeUser2 = {
+        gallon_requested: '1',
+        delivery_address: '',
+        delivery_date: '02/16/1997',
         suggested_price: '',
         total_due: ''
     }

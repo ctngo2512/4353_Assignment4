@@ -14,11 +14,11 @@ const ContactForm = (props) => {
 
     const fakeUser = {
         name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-        address: '',
-        address2: '',
-        city: '',
-        state: '',
-        zipcode: ''
+        address: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        address2: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        city: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        state: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        zipcode: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     }
 
     const fakeUser2 = {
@@ -88,10 +88,11 @@ const ContactForm = (props) => {
              formIsValid = false;
              errors["name"] = "Only letters";
              setNameError("Name can only contain letters.");
-        }else if (values.name.length > 50) {
+        }
+        if (values.name.length > 50) {
             errors['name'] = 'Is too long';
             setNameError("Name has to be shorter than 50 characters.");
-            expect(() =>{ handleValidation(fakeUser.name); }).toThrowError(Error);
+            throw new Error("Too long");
             }        
         }  
 
@@ -107,12 +108,12 @@ const ContactForm = (props) => {
              errors["address"] = "Only letters and numbers";
              setAddressError("Address Line 1 can only contain letters and numbers.");
           }
-         else if (values.address.length > 100) {
+         if (values.address.length > 100) {
             formIsValid = false;
             errors["address"] = 'Is too long';
             setAddressError("Address Line 1 has to be shorter than 100 characters.");
             } 
-         else if (values.address.length < 4){
+        if (values.address.length < 4){
              formIsValid = false;
              errors["address"]= 'Is too short';
              setAddressError("Address Line 1 has to be longer than 4 characters");
@@ -131,12 +132,12 @@ const ContactForm = (props) => {
                  errors["address2"] = "Only letters";
                 setAddress2Error("Address Line 2 can only contain letters and numbers.");
               }
-             else if (values.address2.length > 100) {
+            if (values.address2.length > 100) {
                 formIsValid = false;
                 errors["address2"] = 'Is too long';
                 setAddress2Error("Address Line 2 has to be shorter than 100 characters.");
                 }
-            else if (values.address2.length < 4){
+            if (values.address2.length < 4){
                 formIsValid = false;
                 errors["address2"] = 'Is too short';
                 setAddress2Error("Address Line 2 has to be longer than 4 characters");
@@ -156,7 +157,7 @@ const ContactForm = (props) => {
              errors["city"] = "Only letters";
              setCityError("City can only contain letters.");
           }
-         else if (values.city.length > 100) {
+        if (values.city.length > 100) {
             formIsValid = false;
             errors["city"] = 'Is too long';
             setCityError("City has to be shorter than 100 characters.");
@@ -170,7 +171,7 @@ const ContactForm = (props) => {
             setStateError("State cannot be empty.");
         }
 
-        else if(!values.state.match(/^[a-zA-Z\s]*$/)){
+        if(!values.state.match(/^[a-zA-Z\s]*$/)){
             formIsValid=false;
             errors["state"] = "Only letters";
             setStateError("State can only contain letters.");
@@ -187,24 +188,24 @@ const ContactForm = (props) => {
              errors["zipcode"] = "Only numbers";
              setZipcodeError("Zipcode can only contain numbers.");
           }
-        else if (values.zipcode.replace(/[^0-9]/g,"").length > 9) {
+        if (values.zipcode.replace(/[^0-9]/g,"").length > 9) {
             errors["zipcode"] = 'Is too long';
             formIsValid=false;
             setZipcodeError("Zipcode has to be shorter than 9 digits.");
         }  
-        else if(values.zipcode.length < 5){
+        if(values.zipcode.length < 5){
             errors["zipcode"] = "Is too short";
             formIsValid=false;
             setZipcodeError("Zipcode has to be at least 5 digits.");
         }
-        else if(!values.zipcode.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)){
+        if(!values.zipcode.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/)){
             errors["zipcode"] = "Wrong format";
             formIsValid=false;
             setZipcodeError("Zipcode must be in format 00000 or 00000-0000");
         }
     }
-        //expect(() =>{ handleValidation(fakeUser); }).toThrow();
         expect(() =>{ handleValidation(fakeUser2); }).toThrow(Error);
+        expect(() =>{ handleValidation(fakeUser); }).toThrowError("Too long");
        return (formIsValid);
    }
 
