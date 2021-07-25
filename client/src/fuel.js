@@ -73,13 +73,9 @@ const FuelForm = (props) => {
 
         //date
         if (validator.isDate(values.delivery_date)) {
-            if (validator.isBefore(values.delivery_date)) {
-                formIsValid = false;
-                errors["delivery_date"] = "can't be in the past";
-                alert("Delivery date cannot be in the past!");
-            }
-        } 
-        else {
+            setErrorMessage('Valid Date :)')
+        } else {
+            setErrorMessage('Enter Valid Date in form of 00/00/0000')
             formIsValid = false;
             errors["delivery_date"] = "has to be in form of 00/00/0000";
             alert("Delivery date has to be in form of 00/00/0000");
