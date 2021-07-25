@@ -24,10 +24,6 @@ button {
   cursor: pointer;
 }
 
-button:hover{
-  background: #85b2f5;
-}
-
 .login {
   width: 100%;
   min-height: 100vh;
@@ -105,10 +101,6 @@ button:hover{
   transition: all 400ms ease-in-out;
 }
 
-.login .loginContainer .btnContainer p span:hover {
-  color: #85b2f5;
-}
-
 .login .loginContainer .errorMsg {
   color: rgb(182, 59, 59);
   font-size: 16px;
@@ -143,11 +135,6 @@ button:hover{
   padding: 8px 0;
   background: #072361;
 }
-
-.hero nav button:hover{
-  background: #85b2f5;
-}
-
 
 .hero div.jumbotron-fluid{
   height: 2px;
@@ -201,6 +188,30 @@ button:hover{
 .contact .contactContainer .errorMsg {
   color: rgb(182, 59, 59);
   font-size: 16px;
+  margin-left: 60px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
+
+.input-group-prepend {
+  width: 50px;
+  margin-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.input-group-text {
+  width: 40px;
+  margin-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.form-control {
+  width: 300px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 
 

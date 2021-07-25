@@ -189,9 +189,7 @@ const ContactForm = (props) => {
             <section className = "contact">
             <div className="contactContainer">
             <div className="form-group input-group">
-            <div className="form-group input-group">
                 <div className="input-group-prepend">
-
                     <div className="input-group-text">
                         <i className="fas fa-user"></i>
                     </div>
@@ -202,52 +200,56 @@ const ContactForm = (props) => {
                     onChange={handleInputChange}
                 />
                 </div>
+                <div className="contactContainer">
+                <p className="errorMsg">{nameError}</p>
                 </div>
             </div>
-            <p className="errorMsg">{nameError}</p>
-            <div className="form-row">
-                <div className="form-group input-group col-md-6">
+            <div className="form-group input-group">
                     <div className="input-group-prepend">
                         <div className="input-group-text">
                         </div>
                     </div>
-
+                    <div className = 'Name'>
                     <input className="form-control" name="address" onClick={clearErrors} placeholder="Address Line 1"
                         value={values.address}
                         onChange={handleInputChange}
                     />
+                    </div>
                     <p className="errorMsg">{addressError}</p>
                 </div>
-                                <div className="form-group input-group col-md-6">
+                <div className="form-group input-group">
                     <div className="input-group-prepend">
                         <div className="input-group-text">
                         </div>
                     </div>
-
+                    <div className = 'Name'>
                     <input className="form-control" name="address2" onClick={clearErrors} placeholder="Address Line 2"
                         value={values.address2}
                         onChange={handleInputChange}
                     />
+                    </div>
                     <p className="errorMsg">{address2Error}</p>
                 </div>
                 
-                <div className="form-group input-group col-md-0">
+                <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
                         </div>
                     </div>
+                    <div className = 'Name'>
                     <input className="form-control" name="city" onClick={clearErrors} placeholder="City"
                         value={values.city}
                         onChange={handleInputChange}
                     />
                 </div>
+                <p className="errorMsg">{cityError}</p>
             </div>
-            <p className="errorMsg">{cityError}</p>
-            <div className="form-group input-group col-md-0">
+            <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
                     </div>
                 </div>
+                <div className = 'Name'>
                 <select className="form-control" name="state" onClick={clearErrors}
                     value={values.state}
                     //pull down option for state
@@ -305,13 +307,15 @@ const ContactForm = (props) => {
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
                 </select>		
+                </div>
+                <p className="errorMsg">{stateError}</p>	
             </div>
-            <p className="errorMsg">{stateError}</p>	
-            <div className="form-group input-group col-md-0">
+            <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
                     </div>
                 </div>
+                <div className = 'Name'>
                 <input className="form-control" name="zipcode" onClick={clearErrors} placeholder="Zipcode"
                     value={values.zipcode}
                     onChange={handleInputChange}
@@ -323,6 +327,7 @@ const ContactForm = (props) => {
                 <div className="savebtn">
                 <input //save button
                 type="submit" value={props.currentId == "" ? "Save" : "Update"} className="btn btn-primary btn-block" />
+                </div>
                 </div>
                 </div>
             </section>
