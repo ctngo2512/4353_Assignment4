@@ -46,6 +46,7 @@ const App = () => {
             break;
         }
       });
+      //expect(() =>{ clearInputs(); }).toBeCalled();
   };
 
   //sign up using firebase authentication

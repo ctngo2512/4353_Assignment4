@@ -64,10 +64,6 @@ const Hero = (props) => {
             })
        
         }
-       // alert(isClient)
-     //  alert(userAddress);
-      //  alert("TEST: " + test123);
-       // alert(nameRef);
     })
 
     //pushes profile contact info to the firebase database
