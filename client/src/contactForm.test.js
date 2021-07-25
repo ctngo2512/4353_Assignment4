@@ -43,18 +43,4 @@ describe('Contact Form component tests', ()=> {
             render(<ContactForm/>);
         });
     });
-
-    it('handles validations', () => {
-        const fakeUser = {
-            name: '1',
-            address: '1',
-            city: '1',
-            state: '1',
-            zipcode: '1'
-        }
-
-        expect(handleValidation(fakeUser)).toBeTruthy();
-
-    });
-
 });
