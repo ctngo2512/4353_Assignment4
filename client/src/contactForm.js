@@ -137,7 +137,7 @@ const ContactForm = (props) => {
              errors["city"] = "Only letters";
              setCityError("City can only contain letters.");
           }
-         else if (values.name.length > 50) {
+         else if (values.city.length > 100) {
             formIsValid = false;
             errors["city"] = 'Is too long';
             setCityError("City has to be shorter than 100 characters.");
