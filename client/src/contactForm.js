@@ -158,7 +158,6 @@ const ContactForm = (props) => {
              errors["zipcode"] = "Only numbers";
              setZipcodeError("Zipcode can only contain numbers.");
           }
-<<<<<<< HEAD
         else if (values.zipcode.length > 9) {
             errors["zipcode"] = 'Is too long';
             formIsValid=false;
@@ -168,22 +167,6 @@ const ContactForm = (props) => {
             errors["zipcode"] = "Is too short";
             formIsValid=false;
             setZipcodeError("Zipcode has to be at least 5 digits.");
-=======
-            else if (values.zipcode.length > 9) {
-                errors.zipcode = 'The name provided is too long - max 50 characters please'
-                formIsValid=false;
-                alert("Zip code too long");
-            }  
-            else if(values.zipcode.length < 5){
-                formIsValid=false;
-                alert("Zip code too short");
-            }
-            
-            else if (!values.zipcode.match(/^[0-9]{5}(-[0-9]{3})?$/) || !values.zipcode.match(/^(?:\d{5})?$/)){
-                formIsValid=false;
-                alert("Incorrect zip-code format");
-            }
->>>>>>> parent of b20dfaf (adding vaidations)
         }
     }
        return (formIsValid);
