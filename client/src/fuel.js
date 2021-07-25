@@ -12,6 +12,13 @@ const FuelForm = (props) => {
         suggested_price: '',
         total_due: ''
     }
+    const fakeUser = {
+        gallon_requested: '*',
+        delivery_address: '*',
+        delivery_date: '',
+        suggested_price: '',
+        total_due: ''
+    }
 
     const [gallonError, setGallonError] = useState('');
     const [dateError, setDateError] = useState('');
@@ -65,7 +72,7 @@ const FuelForm = (props) => {
     }
 
     //validation for fuel form 
-    const handleValidation = values => {
+    function handleValidation (values) {
        
         //let fields caused an issue with refreshing and not inputting data
        //let fields = this.values.fields;
@@ -106,6 +113,7 @@ const FuelForm = (props) => {
             setGallonError("Gallons requested can only contain numbers.");
          }  
         }
+        expect(() =>{ handleValidation(fakeUser); }).toThrow(Error);
        return (formIsValid);
     }
     

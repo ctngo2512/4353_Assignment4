@@ -11,6 +11,25 @@ const ContactForm = (props) => {
         state: '',
         zipcode: ''
     }
+
+    const fakeUser = {
+        name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        address: '',
+        address2: '',
+        city: '',
+        state: '',
+        zipcode: ''
+    }
+
+    const fakeUser2 = {
+        name: '*',
+        address: '*',
+        address2: '*',
+        city: '*',
+        state: '*',
+        zipcode: '*'
+    }
+
     const [nameError, setNameError] = useState('');
     const [addressError, setAddressError] = useState('');
     const [cityError, setCityError] = useState('');
@@ -51,7 +70,7 @@ const ContactForm = (props) => {
     }
 
     //input validations for profile page
-    const handleValidation = values => {
+    function handleValidation (values){
        
         //let fields caused an issue with refreshing and not inputting data
         //let fields = this.values.fields;
@@ -69,10 +88,10 @@ const ContactForm = (props) => {
              formIsValid = false;
              errors["name"] = "Only letters";
              setNameError("Name can only contain letters.");
-          }
-         else if (values.name.length > 50) {
+        }else if (values.name.length > 50) {
             errors['name'] = 'Is too long';
             setNameError("Name has to be shorter than 50 characters.");
+            expect(() =>{ handleValidation(fakeUser.name); }).toThrowError(Error);
             }        
         }  
 
@@ -184,6 +203,8 @@ const ContactForm = (props) => {
             setZipcodeError("Zipcode must be in format 00000 or 00000-0000");
         }
     }
+        //expect(() =>{ handleValidation(fakeUser); }).toThrow();
+        expect(() =>{ handleValidation(fakeUser2); }).toThrow(Error);
        return (formIsValid);
    }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import fire from './fire';
 import Hero from './Hero';
 import ContactForm from './contactForm';
@@ -26,11 +26,12 @@ describe('Contact Form component tests', ()=> {
 
     it('Renders user data', () => {
         const fakeUser = {
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zipcode: ''
+            name: '*',
+            address: '*',
+            address2: '*',
+            city: '*',
+            state: '*',
+            zipcode: '*'
         }
 
         let snapshot = {val: () => fakeUser};
@@ -42,5 +43,6 @@ describe('Contact Form component tests', ()=> {
         act(() => {
             render(<ContactForm/>);
         });
+
     });
 });
