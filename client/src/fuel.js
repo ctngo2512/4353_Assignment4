@@ -12,7 +12,14 @@ const FuelForm = (props) => {
         suggested_price: '',
         total_due: ''
     }
-//const [userAddy, setAddress] = useState('');
+
+    const [gallonError, setGallonError] = useState('');
+    const [dateError, setDateError] = useState('');
+
+    const clearErrors = () => {
+        setGallonError('');
+        setDateError('');
+    }
 
     var userAddy;
     const {
@@ -33,10 +40,6 @@ const FuelForm = (props) => {
             }
         } catch(error) {}
     }, [props.currentId, props.fuelObjects, props.initialFieldValues])
-
-    //alert(initialFieldValues.gallon_requested);
-
-    //alert(props.userAddress);
     
     const addyRef = fire.database().ref('Users/'+userID);
     try {
@@ -46,8 +49,6 @@ const FuelForm = (props) => {
             }
         })
     } catch {}
-    
-   // alert("USERADDY: "+userAddy);
 
     const handleInputChange = e => {
         var { name, value} = e.target;
@@ -76,32 +77,35 @@ const FuelForm = (props) => {
             if (validator.isBefore(values.delivery_date)) {
                 formIsValid = false;
                 errors["delivery_date"] = "can't be in the past";
-                alert("Delivery date cannot be in the past!");
+                setDateError("Date cannot be in the past.");
             }
         } 
         else {
-            formIsValid = false;
-            errors["delivery_date"] = "has to be in form of 00/00/0000";
-            alert("Delivery date has to be in form of 00/00/0000");
+            if (values.delivery_date=='' || values.delivery_date==null){
+                formIsValid = false;
+                errors["delivery_date"] = "Cannot be empty";
+                setDateError("Delivery date cannot be empty.");
+            }
+            else {
+                formIsValid = false;
+                errors["delivery_date"] = "has to be in form of 00/00/0000";
+                setDateError("Delivery date has to be in the form of 00/00/0000.");
+            }
         }
-
-        //alert(values.delivery_date);
 
         //gallons requested
         if(values.gallon_requested=='' || values.gallon_requested==null){
            formIsValid = false;
            errors["gallon_requested"] = "Cannot be empty";
-           alert("Gallons requested cannot be empty");
+           setGallonError("Gallons requested cannot be empty.");
         }else{
 
         if(!values.gallon_requested.match(/^[0-9]+$/)){
             formIsValid = false;
             errors["gallon_requested"] = "Only numbers";
-            alert("Numbers only in gallons requested field");
+            setGallonError("Gallons requested can only contain numbers.");
          }  
         }
-   
-       //this.setState({errors: errors});
        return (formIsValid);
     }
     
@@ -116,32 +120,42 @@ const FuelForm = (props) => {
     return (
         <form autoComplete="off" onSubmit={handleFormSubmit}>
             <section className = "contact">
+            <div className="contactContainer">
             <div className="form-group input-group">
                 <div className="input-group-prepend">
-                    <div className="input-group-text"/>
-                </div>
-                <input className="form-control" name="gallon_requested" placeholder="Gallons Requested"
+                    <div className="input-group-text">
+                        </div>
+                        </div>
+                <div className = 'Name'>
+                <input className="form-control" 
+                name="gallon_requested" 
+                onClick={clearErrors} 
+                placeholder="Gallons Requested"
                     value={values.gallon_requested}
                     onChange={handleInputChange}
                 />
-            </div>
-                <div className="form-group input-group">
-                <div className="input-group-prepend"/>
-        <div className="container">
-            <div className="col"> 
-                <div className="form-group">
+                </div>
+                <p className="errorMsg">{gallonError}</p>
+                </div>
                     <div className="form-group input-group">   
-                    <div className="input-group-prepend"/>
-                    <div className="input-group-text"/>
-                    <input type="date" className="form-control" id="pure-date" name="delivery_date" onChange={handleInputChange} aria-describedby="date-design-prepend"/>
+                    <div className="input-group-prepend">
+                    <div className="input-group-text">
+                        </div>
+                        </div>
+                    <div className = 'Name'>
+                    <input type="date" className="form-control" 
+                    id="pure-date" 
+                    name="delivery_date" 
+                    onClick={clearErrors} 
+                    onChange={handleInputChange} aria-describedby="date-design-prepend"
+                    />
                     </div>
-                </div>
-            </div>
-         </div>
-                </div>
+                    <p className="errorMsg">{dateError}</p>
+                    </div>
             <div className="form-group">
                 <div className="savebtn">
                 <input type="submit" value= "Save" className="btn btn-primary btn-block" />
+                </div>
                 </div>
                 </div>
             </section>
